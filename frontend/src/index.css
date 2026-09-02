@@ -1,0 +1,220 @@
+@import 'tailwindcss';
+
+/* GeneVerify brand tokens: premium white / light-gray base with green accents. */
+@theme {
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #064e3b;
+
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Motion tokens (Step 10) — deliberately short and restrained. */
+  --ease-gv: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-gv-fade-up: gv-fade-up 0.35s var(--ease-gv) both;
+  --animate-gv-fade-in: gv-fade-in 0.25s ease-out both;
+  --animate-gv-pop: gv-pop 0.25s var(--ease-gv) both;
+  --animate-gv-menu: gv-menu 0.18s ease-out both;
+  --animate-gv-shimmer: gv-shimmer 1.4s linear infinite;
+  --animate-gv-ping: gv-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes gv-fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 8px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes gv-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes gv-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes gv-menu {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -6px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes gv-shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  @keyframes gv-ping {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    75%,
+    100% {
+      transform: scale(2.1);
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    /* Subtle futuristic cast without noise: a single soft brand wash at the top. */
+    background-image:
+      radial-gradient(60rem 30rem at 50% -12rem, rgba(16, 185, 129, 0.08), transparent 70%);
+    background-repeat: no-repeat;
+  }
+
+  /* Visible, consistent keyboard focus everywhere (Step 10 accessibility). */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-900;
+  }
+}
+
+@layer components {
+  /* Surfaces ------------------------------------------------------------- */
+  .gv-card {
+    @apply rounded-2xl border border-gray-200/80 bg-white shadow-sm;
+  }
+
+  .gv-card-hover {
+    @apply transition duration-200 ease-out hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md;
+  }
+
+  /* Glass header strips used by section titles. */
+  .gv-glass {
+    @apply bg-white/70 backdrop-blur-sm;
+  }
+
+  /* Typography helpers --------------------------------------------------- */
+  .gv-eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-400;
+  }
+
+  .gv-section-title {
+    @apply text-base font-semibold tracking-tight text-gray-900 sm:text-lg;
+  }
+
+  /* Badges --------------------------------------------------------------- */
+  .gv-badge {
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-inset;
+  }
+
+  /* Buttons -------------------------------------------------------------- */
+  /* Compose as `gv-btn` plus exactly one tone and an optional size. */
+  .gv-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .gv-btn-primary {
+    @apply bg-brand-600 text-white shadow-sm hover:bg-brand-700 hover:shadow-md active:translate-y-px;
+  }
+
+  .gv-btn-secondary {
+    @apply border border-gray-300 bg-white text-gray-700 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700;
+  }
+
+  .gv-btn-ghost {
+    @apply text-gray-600 hover:bg-gray-100 hover:text-gray-900;
+  }
+
+  .gv-btn-lg {
+    @apply px-5 py-3 text-base;
+  }
+
+  .gv-btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  /* Staggered entrance: cards reveal top-to-bottom in ~40ms steps. */
+  .gv-stagger-1 {
+    animation-delay: 40ms;
+  }
+  .gv-stagger-2 {
+    animation-delay: 80ms;
+  }
+  .gv-stagger-3 {
+    animation-delay: 120ms;
+  }
+  .gv-stagger-4 {
+    animation-delay: 160ms;
+  }
+
+  /* Skeleton shimmer for loading states. */
+  .gv-skeleton {
+    @apply rounded-md bg-gray-200/70;
+    background-image: linear-gradient(
+      90deg,
+      rgba(229, 231, 235, 0.55) 0%,
+      rgba(243, 244, 246, 0.95) 50%,
+      rgba(229, 231, 235, 0.55) 100%
+    );
+    background-size: 200% 100%;
+    animation: gv-shimmer 1.4s linear infinite;
+  }
+}
+
+/* Print: the report page should read as a document, not as an app screen. */
+@media print {
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background-image: none;
+  }
+}
+
+/* Respect the user's motion preference for every Step 10 animation. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .gv-skeleton {
+    background-image: none;
+    animation: none;
+  }
+}

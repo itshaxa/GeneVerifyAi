@@ -1,0 +1,29 @@
+# Keep the build context small and, above all, keep secrets and local state out
+# of image layers (Step 11).
+
+# Secrets and local configuration — configuration enters via the environment.
+.env
+.env.*
+
+# Local database and uploaded documents (never shipped, never committed).
+*.db
+*.sqlite3
+storage/
+
+# Python local artefacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Test-only material (runtime image installs requirements.txt only).
+tests/
+requirements-dev.txt
+pytest.ini
+
+# Scratch artefacts left in the backend directory.
+*.png
+*.jpg
+*.jpeg
+*.pdf

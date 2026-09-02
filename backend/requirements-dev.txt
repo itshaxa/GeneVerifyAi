@@ -1,0 +1,13 @@
+# GeneVerify AI — development / test dependencies
+#
+# Install with:  pip install -r requirements-dev.txt
+# (The production image only needs requirements.txt.)
+
+-r requirements.txt
+
+pytest>=8.3,<9.0
+
+# fastapi.testclient is built on httpx. Note: the previous manifest listed
+# "httpx2" (an unrelated package) which does NOT provide the `httpx` module,
+# so a clean `pip install -r requirements.txt` could not run the test suite.
+httpx>=0.28,<1.0

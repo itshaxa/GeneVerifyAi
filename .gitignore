@@ -1,0 +1,109 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.db
+*.sqlite
+*.sqlite3
+# Transient SQLite side files created next to geneverify.db while it is open.
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Environment / secrets — never commit, examples are kept
+.env
+.env.*
+!.env.example
+
+# Credential and key material of every kind. The audit found none in this
+# project; these rules are what keeps it that way once keys are configured
+# locally (Qwen/DashScope, SSH, cloud CLI, certificates, password stores).
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.ppk
+*.jwk
+*.kdbx
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+known_hosts
+secrets.json
+credentials
+credentials.json
+service-account*.json
+*-oauth-client*.json
+.pypirc
+.npmrc
+.netrc
+.secrets.baseline
+local_settings.py
+gcp-service-account*.json
+
+# SSH / cloud CLI state
+.ssh/
+.aws/
+.gcloud/
+.azure/
+.aliyun/
+.dashscope/
+
+# Other environments
+env/
+.virtualenv/
+
+# Node
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+npm-debug.log*
+
+# Logs
+*.log
+
+# Test / build artefacts (Step 11)
+.coverage
+coverage/
+htmlcov/
+*.cover
+coverage.xml
+
+# QA screenshots and scratch captures are local evidence, not source code.
+# Scoped to the directory roots so real assets under frontend/src/assets/ stay
+# committable.
+/*.png
+/*.jpg
+/*.jpeg
+backend/*.png
+backend/*.jpg
+backend/*.jpeg
+frontend/*.png
+docs/*.png
+
+# Local tooling / editor scratch (Step 11)
+.aicoding-chat-workspace
+*.local
+docker-compose.override.yml
+# Ad-hoc verification scripts and their scratch output (local evidence only).
+/.qa-tmp/
+
+# Uploaded document storage (Step 6) — never committed
+storage/
+/data/
+
+# Editors / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
